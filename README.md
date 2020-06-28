@@ -1,15 +1,15 @@
 # DesafioCielo
 Api criada baseada no sistema legado disponibilizado via e-mail
 
-##Aquitetura
+## Aquitetura
 Arquitetura utilizada foi MVC
 
-###Entidades
+### Entidades
    * Banco - dados bancários
    * Remessa - dados da remessa
    * Lancamento - Pagamento das remessas com aos dados bancários
 
-##Frameworks/Libs/Ferramentas
+## Frameworks/Libs/Ferramentas
    * [Spring Boot](https://www.springbot.com/)
    * [Hibernate](https://hibernate.org/)
    * [Docker](https://docs.docker.com/)
@@ -19,7 +19,7 @@ Arquitetura utilizada foi MVC
    * [PostgreSQL](https://www.postgresql.org/)
    * [JacksonJSON](https://www.baeldung.com/jackson/)
 
-##Como Usar
+## Como Usar
     Para utilizar a api:
         * com docker:
             * git clone https://github.com/adrmarciao/DesafioCielo.git
@@ -31,13 +31,13 @@ Arquitetura utilizada foi MVC
             * importar o projeto no intellij
             * executar
             
-##Variáveis de ambiente
+## Variáveis de ambiente
    * POSTGRES_DATABASE
    * POSTGRES_DB
    * POSTGRES_USER
    * POSTGRES_PASSWORD
 
-##API REST
+## API REST
  * Banco
     * /api/banco/ [PUT/POST]
     * /api/banco/{id} [GET]
