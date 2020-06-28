@@ -1,0 +1,67 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+	<changeSet id="criando estrutura inicial" author="adriano.pereira">
+		<createSequence sequenceName="banco_values_seq" startValue="1"/>
+		<createTable tableName="tb_banco">
+			<column name="id_banco" type="java.sql.Types.BIGINT"
+					valueComputed="[banco_values_seq].NEXTVAL">
+				<constraints
+						primaryKey="true"
+						primaryKeyName="pk_banco"
+						nullable="false"/>
+			</column>
+			<column name="codigo_banco" type="java.sql.Types.BIGINT"/>
+			<column name="numero_agencia" type="java.sql.Types.BIGINT"/>
+			<column name="numero_conta_corrente" type="java.sql.Types.VARCHAR(100)"/>
+		</createTable>
+
+		<createSequence sequenceName="remessa_values_seq" startValue="1"/>
+		<createTable tableName="tb_remessa">
+			<column name="id_remessa" type="java.sql.Types.BIGINT"
+					valueComputed="[remessa_values_seq].NEXTVAL">
+				<constraints
+						primaryKey="true"
+						primaryKeyName="pk_remessa"
+						nullable="false"/>
+			</column>
+			<column name="numero_evento" type="java.sql.Types.BIGINT"/>
+			<column name="descricao_grupo_pagamento" type="java.sql.Types.VARCHAR(100)"/>
+			<column name="codigo_identificador_unico" type="java.sql.Types.VARCHAR(100)"/>
+			<column name="nome_banco" type="java.sql.Types.VARCHAR(100)"/>
+			<column name="quantidade_lancamento_remessa" type="java.sql.Types.BIGINT"/>
+			<column name="numero_raiz_cnpj" type="java.sql.Types.VARCHAR(100)"/>
+			<column name="numero_sufixo_cnpj" type="java.sql.Types.VARCHAR(100)"/>
+			<column name="valor_lancamento_remessa" type="java.sql.Types.BIGINT"/>
+			<column name="date_efetiva_lancamento" type="java.sql.Types.BIGINT"/>
+		</createTable>
+
+		<createSequence sequenceName="lacamento_values_seq" startValue="1"/>
+		<createTable tableName="tb_lacamento">
+			<column name="id_lancamento" type="java.sql.Types.BIGINT"
+					valueComputed="[lacamento_values_seq].NEXTVAL">
+				<constraints
+						primaryKey="true"
+						primaryKeyName="pk_lacamento"
+						nullable="false"/>
+			</column>
+			<column name="numero_remessa_banco" type="java.sql.Types.BIGINT"/>
+			<column name="nome_situacao_remessa" type="java.sql.Types.INTEGER"/>
+			<column name="date_lancamento_conta_corrente_cliente" type="java.sql.Types.BIGINT"/>
+			<column name="id_banco" type="java.sql.Types.BIGINT">
+				<constraints nullable="true"
+							 foreignKeyName="fk_lancamento_banco"
+							 references="tb_banco(id_banco)"/>
+			</column>
+			<column name="id_remessa" type="java.sql.Types.BIGINT">
+				<constraints nullable="true"
+							 foreignKeyName="fk_lancamento_remessa"
+							 references="tb_remessa(id_remessa)"/>
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet id="migrando dados legados" author="adriano.pereira">
+		<customChange class="br.com.adriano.desafio.migration.LegacyMigration">
+		</customChange>
+	</changeSet>
+</databaseChangeLog>
