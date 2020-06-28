@@ -16,6 +16,9 @@ public class RemessaDTO {
     private Long valorLancamentoRemessa;
     private Long dateEfetivaLancamento;
 
+    public RemessaDTO() {
+    }
+
     public RemessaDTO(Remessa remessa) {
         this.id = remessa.getId();
         this.numeroEvento = remessa.getNumeroEvento();

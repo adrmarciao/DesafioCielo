@@ -1,6 +1,5 @@
 package br.com.adriano.desafio.lancamento.service;
 
-import br.com.adriano.desafio.banco.dto.BancoDTO;
 import br.com.adriano.desafio.lancamento.dto.LancamentoDTO;
 import br.com.adriano.desafio.lancamento.exception.LancamentoNaoEncontrado;
 import br.com.adriano.desafio.lancamento.repository.LancamentoRepository;
@@ -25,5 +24,9 @@ public class LancamentoService {
 
     public Page<LancamentoDTO> getPaged(Integer page, Integer limit) {
         return this.repository.findAll(PageRequest.of(page, limit)).map(LancamentoDTO::new);
+    }
+
+    public void delete(Long id) {
+        this.repository.deleteById(id);
     }
 }

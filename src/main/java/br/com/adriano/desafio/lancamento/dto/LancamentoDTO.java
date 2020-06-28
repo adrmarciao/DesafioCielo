@@ -16,6 +16,9 @@ public class LancamentoDTO {
     private RemessaDTO remessa;
     private Long dateLancamentoContaCorrenteCliente;
 
+    public LancamentoDTO() {
+    }
+
     public LancamentoDTO(Lancamento lancamento) {
         this.id = lancamento.getId();
         this.numeroRemessaBanco = lancamento.getNumeroRemessaBanco();

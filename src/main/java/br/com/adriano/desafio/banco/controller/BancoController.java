@@ -15,17 +15,27 @@ public class BancoController {
     private BancoService bancoService;
 
     @GetMapping("/{id}")
-    public @ResponseBody BancoDTO getBanco(@PathVariable Long id) {
+    public @ResponseBody BancoDTO get(@PathVariable Long id) {
         return bancoService.getBanco(id);
     }
 
     @PostMapping("/")
-    public @ResponseBody BancoDTO getBanco(@RequestBody BancoDTO dto) {
-        return bancoService.saveOrUpdate(dto);
+    public @ResponseBody BancoDTO post(@RequestBody BancoDTO dto) {
+        return bancoService.saveUpdate(dto);
+    }
+
+    @PutMapping("/")
+    public @ResponseBody BancoDTO put(@RequestBody BancoDTO dto) {
+        return bancoService.saveUpdate(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public @ResponseBody void delete(@PathVariable Long id) {
+        bancoService.delete(id);
     }
 
     @GetMapping("/{page}/{limit}")
-    public @ResponseBody Page<BancoDTO> getBanco(@PathVariable Integer page, @PathVariable Integer limit) {
+    public @ResponseBody Page<BancoDTO> getPaged(@PathVariable Integer page, @PathVariable Integer limit) {
         return bancoService.getPaged(page, limit);
     }
 }

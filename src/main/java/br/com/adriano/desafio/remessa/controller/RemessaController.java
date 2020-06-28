@@ -29,4 +29,15 @@ public class RemessaController {
     Page<RemessaDTO> getPaged(@PathVariable Integer page, @PathVariable Integer limit) {
         return service.getPaged(page, limit);
     }
+
+    @PutMapping("/")
+    public @ResponseBody
+    RemessaDTO put(@RequestBody RemessaDTO dto) {
+        return service.saveOrUpdate(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public @ResponseBody void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
 }

@@ -30,4 +30,14 @@ public class LancamentoController {
     Page<LancamentoDTO> getPaged(@PathVariable Integer page, @PathVariable Integer limit) {
         return service.getPaged(page, limit);
     }
+
+    @PutMapping("/")
+    public @ResponseBody LancamentoDTO put(@RequestBody LancamentoDTO dto) {
+        return service.saveOrUpdate(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public @ResponseBody void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
 }

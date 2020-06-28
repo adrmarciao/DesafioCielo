@@ -25,4 +25,8 @@ public class RemessaService {
     public Page<RemessaDTO> getPaged(Integer page, Integer limit) {
         return this.repository.findAll(PageRequest.of(page, limit)).map(RemessaDTO::new);
     }
+
+    public void delete(Long id) {
+        this.repository.deleteById(id);
+    }
 }

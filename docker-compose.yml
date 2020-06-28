@@ -1,0 +1,24 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_PASSWORD: 123456
+  gradle:
+    image: gradle:6.5-jdk11
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    command:
+      bash -c "cd /home/gradle/project/ && gradle bootRun"
+    volumes:
+      - .:/home/gradle/project
+    links:
+      - "db:database"
+    environment:
+      POSTGRES_DATABASE: database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: db
