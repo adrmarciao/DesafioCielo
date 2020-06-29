@@ -38,6 +38,7 @@ Arquitetura utilizada foi MVC
    * POSTGRES_PASSWORD
 
 ## API REST
+Obs: Porta de execução da API 8080.
  * Banco
     * /api/banco/ [PUT/POST]
     * /api/banco/{id} [GET]
